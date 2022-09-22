@@ -16,21 +16,9 @@ public class ScoreChange : MonoBehaviour
         scoreText.text = "" + score;
     }
 
-    public void HundredPoints() {
-        UpdateScore(100);
-    }
-
     public void FifthyPoints()
     {
         UpdateScore(50);
-    }
-
-    public void MinusPoints()
-    {
-        if (score > 0)
-        {
-            UpdateScore(-25);
-        }
     }
 
     void UpdateScore(int scoreToAdd)

@@ -5,9 +5,13 @@ using UnityEngine;
 public class PauseMenu : MonoBehaviour
 {
     public static bool IsPaused = false;
-
     public GameObject PauseMenuUI;
 
+    // Start is called before the first frame update
+    void Start()
+    {
+        Time.timeScale = 1f;
+    }
     //Function called through Resume Button on PauseCanvas
     public void Resume()
     {
