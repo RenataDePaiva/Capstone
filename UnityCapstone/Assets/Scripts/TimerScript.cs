@@ -10,6 +10,7 @@ public class TimerScript : MonoBehaviour
     public float timeRemaining = 10;
     public bool timerIsRunning = false;
     public TextMeshProUGUI timeText;
+
     private void Start()
     {
         // Starts the timer automatically
@@ -24,8 +25,8 @@ public class TimerScript : MonoBehaviour
             {
                 timeRemaining -= Time.deltaTime;
                 DisplayTime(timeRemaining);
-
             }
+
             else
             {
                 Debug.Log("Time has run out!");
