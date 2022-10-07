@@ -1,30 +1,58 @@
 using System.Collections;
 using System.Collections.Generic;
-using System.Linq;
 using UnityEngine;
+using UnityEngine.UI;
+using UnityEngine.SceneManagement;
+using TMPro;
 
 public class QuizManager : MonoBehaviour
 {
-    public QuestionsScript[] questionsList;
-    private static List<QuestionsScript> unansweredQuestions;
-    private QuestionsScript currentQuestion;
+    public List<QuestionsScript> QnA;
+    public GameObject[] options;
+    public int currentQuestion;
+    public ScoreChange scoreChange;
 
-    void Start()
+    public TextMeshProUGUI QuestionTxt;
+
+    private void Start()//Calls function to generate Question as soon as Gamescene loads
     {
-        if(unansweredQuestions == null || unansweredQuestions.Count == 0)
-        {
-            unansweredQuestions = questionsList.ToList<QuestionsScript>();
-        }
-
-        GetRandomQuestion();
-
-        Debug.Log(currentQuestion.question + " is " + currentQuestion.isCorrect);
+        generateQuestion();
     }
-    void GetRandomQuestion()
-    {
-        int randomQuestionIndex = Random.Range(0, unansweredQuestions.Count);
-        currentQuestion = unansweredQuestions[randomQuestionIndex];
 
-        unansweredQuestions.RemoveAt(randomQuestionIndex);
+    public void correct()//Called from AnswerScript.Answer() if question is answered correctly
+    {
+        QnA.RemoveAt(currentQuestion);//Remove current question from array so questions does not repeat
+        generateQuestion();
+        scoreChange.ScorePoints();//Calls ScorePoints to update score
+    }
+
+    public void incorrect()//Called from AnswerScript.Answer() if question is answered incorrectly
+    {
+        QnA.RemoveAt(currentQuestion);//Remove current question from array so questions does not repeat
+        generateQuestion();
+    }
+
+    void SetAnswers()//Update Options to display correctly
+    {
+        for (int i = 0; i < options.Length; i++)//For loop to update questions according to Array size
+        {
+            options[i].GetComponent<AnswerScript>().isCorrect = false;//Sets Answers to false by default
+            options[i].transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = QnA[currentQuestion].Answers[i];//Gets TMP for each button so that these can be updated with the options related to the question
+        }
+    }
+
+    public void generateQuestion()
+    {
+        if(QnA.Count > 0)//If there are still questions unanswered, choose a random Question to display
+        {
+            currentQuestion = Random.Range(0, QnA.Count);
+
+            QuestionTxt.text = QnA[currentQuestion].Question;//Updates QuestionTxt component to display the question
+            SetAnswers();
+        }
+        else //Loads Scoreboard once player already answered all questions
+        {
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+        }
     }
 }

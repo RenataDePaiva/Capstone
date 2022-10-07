@@ -2,6 +2,6 @@
 
 public class QuestionsScript
 {
-    public string question;
-    public bool isCorrect;
+    public string Question;
+    public string[] Answers;
 }
