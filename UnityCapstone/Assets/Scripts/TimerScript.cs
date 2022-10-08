@@ -7,7 +7,8 @@ using TMPro;
 
 public class TimerScript : MonoBehaviour
 {
-    public float timeRemaining = 10;
+    //public static float totalTime = 300;
+    public float timeRemaining;
     public bool timerIsRunning = false;
     public TextMeshProUGUI timeText;
 
@@ -36,6 +37,7 @@ public class TimerScript : MonoBehaviour
             }
         }
     }
+
     void DisplayTime(float timeToDisplay)
     {
         timeToDisplay += 1;

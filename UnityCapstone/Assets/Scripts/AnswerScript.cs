@@ -11,7 +11,6 @@ public class AnswerScript : MonoBehaviour
     {
         if (isCorrect)//if Answer is correct call correct()
         {
-            Debug.Log("Correct");
             quizManager.correct();
         }
         else//if Answer is incorrect call incorrect()
