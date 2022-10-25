@@ -12,9 +12,8 @@ public class ScoreChange : MonoBehaviour
     public TextMeshProUGUI scoreText;
     public TextMeshProUGUI FinalscoreText;
 
-    void Start() //Displays initial score (0), sets FinalScore to zero
+    void Start() //Displays initial score (0)
     {
-        FinalScore = 0;
         scoreText.text = "" + score;
     }
 
