@@ -11,20 +11,25 @@ public class ScoreChange : MonoBehaviour
     public static int FinalScore;
     public TextMeshProUGUI scoreText;
     public TextMeshProUGUI FinalscoreText;
+    public TimerScript timerScript;
+    public static int timeAnswered;
 
-    void Start() //Displays initial score (0)
+    void Start() //Displays initial score (0), sets FinalScore to zero
     {
+        FinalScore = 0;
         scoreText.text = "" + score;
     }
 
     public void ScorePoints() //Calculate points to be added and calls function to Update Score when Question is answered correctly, called from QuizManager.correct()
     {
-        newScore = 25; //Needs to be updated to make amount of points varied based on the question index
-        UpdateScore(newScore);
+        timeAnswered = Mathf.RoundToInt(timerScript.timeRemaining);//Saves the time in each the player answered the question as a integer 
+
+        UpdateScore(timeAnswered * 7);//Points awarded are a result of the time remaining in game, multiplied by 7 (seven because why not?)
     }
 
     void UpdateScore(int scoreToAdd)//Updates and displays updated score, pass value to FinalScore to be displayed at Scoreboard
     {
+        Debug.Log("Correct! Points Received : " + scoreToAdd);
         score += scoreToAdd;
         scoreText.text = "" + score;
         FinalScore = score;
