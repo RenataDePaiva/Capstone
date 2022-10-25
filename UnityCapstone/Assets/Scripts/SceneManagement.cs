@@ -6,6 +6,11 @@ using UnityEngine.SceneManagement;
 
 public class SceneManagement : MonoBehaviour
 {
+    public void ButtonClick()
+    {
+        FindObjectOfType<AudioManager>().Play("Button Click");
+    }
+
     public void PlayGame()
     {
         SceneManager.LoadScene("Gamescene");
