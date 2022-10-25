@@ -17,6 +17,7 @@ public class QuizManager : MonoBehaviour
     private void Start()//Calls function to generate Question as soon as Gamescene loads
     {
         generateQuestion();
+
     }
 
     public void correct()//Called from AnswerScript.Answer() if question is answered correctly
@@ -50,7 +51,7 @@ public class QuizManager : MonoBehaviour
 
     public void generateQuestion()
     {
-        if(QnA.Count > 0)//If there are still questions unanswered, choose a random Question to display
+        if (QnA.Count > 0)//If there are still questions unanswered, choose a random Question to display
         {
             currentQuestion = Random.Range(0, QnA.Count);
 

@@ -14,8 +14,9 @@ public class ScoreChange : MonoBehaviour
     public TimerScript timerScript;
     public static int timeAnswered;
 
-    void Start() //Displays initial score (0)
+    void Start() //Displays initial score (0), sets FinalScore to zero
     {
+        FinalScore = 0;
         scoreText.text = "" + score;
     }
 
