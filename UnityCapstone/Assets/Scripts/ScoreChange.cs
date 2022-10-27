@@ -7,12 +7,11 @@ using TMPro;
 public class ScoreChange : MonoBehaviour
 {
     private int score;
-    private int newScore;
     public static int FinalScore;
     public TextMeshProUGUI scoreText;
     public TextMeshProUGUI FinalscoreText;
     public TimerScript timerScript;
-    public static int timeAnswered;
+    public static float timeAnswered;
 
     void Start() //Displays initial score (0), sets FinalScore to zero
     {
@@ -22,9 +21,11 @@ public class ScoreChange : MonoBehaviour
 
     public void ScorePoints() //Calculate points to be added and calls function to Update Score when Question is answered correctly, called from QuizManager.correct()
     {
-        timeAnswered = Mathf.RoundToInt(timerScript.timeRemaining);//Saves the time in each the player answered the question as a integer 
+        timeAnswered = timerScript.timeRemaining;//Saves the time in each the player answered the question as a integer 
 
-        UpdateScore(timeAnswered * 7);//Points awarded are a result of the time remaining in game, multiplied by 7 (seven because why not?)
+        UpdateScore(Mathf.RoundToInt(timeAnswered * 7));//Points awarded are a result of the time remaining to answer the question, multiplied by 7 (because why not?)
+
+        FindObjectOfType<TimerScript>().RestartTimer();//After points are awarded, restart the timer
     }
 
     void UpdateScore(int scoreToAdd)//Updates and displays updated score, pass value to FinalScore to be displayed at Scoreboard

@@ -40,9 +40,4 @@ public class OptionsMenu : MonoBehaviour
         Debug.Log("Value in Slider : " + sfxSliderValue);
         PlayerPrefs.Save();
     }
-
-    public void SaveChanges()
-    {
-        PlayerPrefs.Save();
-    }
 }

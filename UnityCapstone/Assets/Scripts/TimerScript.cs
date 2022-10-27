@@ -7,14 +7,17 @@ using TMPro;
 
 public class TimerScript : MonoBehaviour
 {
-    //public static float totalTime = 300;
+    public static float timePlayed;
     public float timeRemaining;
     public bool timerIsRunning = false;
+    public QuizManager quizManager;
     public TextMeshProUGUI timeText;
 
     private void Start()
     {
         // Starts the timer automatically
+        timePlayed = 0;
+        timeRemaining = 15;
         timerIsRunning = true;
     }
 
@@ -25,6 +28,7 @@ public class TimerScript : MonoBehaviour
             if (timeRemaining > 0)
             {
                 timeRemaining -= Time.deltaTime;
+                timePlayed += Time.deltaTime;
                 DisplayTime(timeRemaining);
             }
 
@@ -32,13 +36,18 @@ public class TimerScript : MonoBehaviour
             {
                 Debug.Log("Time has run out!");
                 timeRemaining = 0;
-                timerIsRunning = false;
-                SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+                FindObjectOfType<QuizManager>().RemoveCurrent();//Remove current question from array so questions does not repeat
+
             }
         }
     }
 
-    void DisplayTime(float timeToDisplay)
+    public void RestartTimer()//Gets Called by the Answer function inside the Answer script, this way the timer is question specific
+    {
+        timeRemaining = 15;
+    }
+
+    void DisplayTime(float timeToDisplay)//Formats timer to minutes and seconds and assigns value to timeText
     {
         timeToDisplay += 1;
         float minutes = Mathf.FloorToInt(timeToDisplay / 60);
