@@ -31,6 +31,7 @@ public class QuizManager : MonoBehaviour
     {
         FindObjectOfType<AudioManager>().Play("Wrong Answer");
         QnA.RemoveAt(currentQuestion);//Remove current question from array so questions does not repeat
+        FindObjectOfType<TimerScript>().RestartTimer();
         generateQuestion();
     }
 
@@ -63,7 +64,6 @@ public class QuizManager : MonoBehaviour
             QuestionTxt.text = QnA[currentQuestion].Question;//Updates QuestionTxt component to display the question
             SetAnswers();
 
-            FindObjectOfType<TimerScript>().RestartTimer();
         }
         else //Loads Scoreboard once player already answered all questions
         {
