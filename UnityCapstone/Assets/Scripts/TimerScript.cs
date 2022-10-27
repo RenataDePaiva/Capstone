@@ -7,7 +7,6 @@ using TMPro;
 
 public class TimerScript : MonoBehaviour
 {
-    private float totalTime = 45;
     public static float timePlayed;
     public float timeRemaining;
     public bool timerIsRunning = false;
