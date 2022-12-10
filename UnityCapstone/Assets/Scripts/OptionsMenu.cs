@@ -8,9 +8,12 @@ public class OptionsMenu : MonoBehaviour
 {
     public AudioMixer audioMixer;
     public Slider MusicSlider, SFXSlider;
+    public GameObject OptionsCanvas;
+    public GameObject CreditsCanvas;
 
     void Awake()
     {
+        CreditsCanvas.SetActive(false);
         MusicSlider.value = PlayerPrefs.GetFloat("MusicSliderValue",1);
         SFXSlider.value = PlayerPrefs.GetFloat("SFXSliderValue",1);
     }
@@ -39,5 +42,17 @@ public class OptionsMenu : MonoBehaviour
         PlayerPrefs.SetFloat("SFXSliderValue", sfxSliderValue);
         Debug.Log("Value in Slider : " + sfxSliderValue);
         PlayerPrefs.Save();
+    }
+
+    public void CreditsMenu()
+    {
+        OptionsCanvas.SetActive(false);
+        CreditsCanvas.SetActive(true);
+    }
+
+    public void BackToOptions()
+    {
+        OptionsCanvas.SetActive(true);
+        CreditsCanvas.SetActive(false);
     }
 }

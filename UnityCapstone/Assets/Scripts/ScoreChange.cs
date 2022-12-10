@@ -23,7 +23,7 @@ public class ScoreChange : MonoBehaviour
     {
         timeAnswered = timerScript.timeRemaining;//Saves the time in each the player answered the question as a integer 
 
-        UpdateScore(Mathf.RoundToInt(timeAnswered * 7));//Points awarded are a result of the time remaining to answer the question, multiplied by 7 (because why not?)
+        UpdateScore(Mathf.RoundToInt(75 + (timeAnswered)));//Points awarded are a result of the time remaining to answer the question, multiplied by 7 (because why not?)
 
         FindObjectOfType<TimerScript>().RestartTimer();//After points are awarded, restart the timer
     }
