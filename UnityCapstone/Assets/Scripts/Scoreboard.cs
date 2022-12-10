@@ -12,17 +12,27 @@ public class Scoreboard : MonoBehaviour
     public TextMeshProUGUI highscore1;
     public TextMeshProUGUI highscore2;
     public TextMeshProUGUI highscore3;
+    public GameObject ScoreboardCanvas;
+    public GameObject TruthCanvas;
     public bool GameEnds;
     float overwrite;
     float overwrite2;
 
     void Start()
     {
+        TruthCanvas.SetActive(true);
+        ScoreboardCanvas.SetActive(false);
         overwrite = 0;
         finalScoreText.text = ScoreChange.FinalScore.ToString();
-        numCorrectText.text = AnswerScript.numCorrect.ToString()+"/3";
+        numCorrectText.text = AnswerScript.numCorrect.ToString()+"/10";
         DisplayPlayedTime(TimerScript.timePlayed);
         SaveHighscore();
+    }
+
+    public void SeeScores()
+    {
+        TruthCanvas.SetActive(false);
+        ScoreboardCanvas.SetActive(true);
     }
 
     void SaveHighscore()

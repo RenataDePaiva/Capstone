@@ -17,7 +17,7 @@ public class TimerScript : MonoBehaviour
     {
         // Starts the timer automatically
         timePlayed = 0;
-        timeRemaining = 15;
+        timeRemaining = 30;
         timerIsRunning = true;
     }
 
@@ -36,6 +36,7 @@ public class TimerScript : MonoBehaviour
             {
                 Debug.Log("Time has run out!");
                 timeRemaining = 0;
+                RestartTimer();
                 FindObjectOfType<QuizManager>().RemoveCurrent();//Remove current question from array so questions does not repeat
 
             }
@@ -44,7 +45,7 @@ public class TimerScript : MonoBehaviour
 
     public void RestartTimer()//Gets Called by the Answer function inside the Answer script, this way the timer is question specific
     {
-        timeRemaining = 15;
+        timeRemaining = 30;
     }
 
     void DisplayTime(float timeToDisplay)//Formats timer to minutes and seconds and assigns value to timeText
